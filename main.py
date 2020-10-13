@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QApplication, QWidget
 from PyQt5.QtQuick import QQuickView
 from PyQt5.QtQml import QQmlApplicationEngine
 from PyQt5.QtCore import pyqtSignal, QObject, pyqtProperty
+from MoonshinerCore import MoonshinerModel
 
 
 class Foo(QObject):
@@ -50,7 +51,9 @@ if __name__ == '__main__':
     sys.argv += ['--style', 'Fusion']
     app = QApplication(sys.argv)
     foo = Foo()
-    engine = QQmlApplicationEngine(parent=app)
+    engine = QQmlApplicationEngine()
+    model = MoonshinerModel()
     engine.rootContext().setContextProperty("foo", foo)
+    engine.rootContext().setContextProperty("mmodel", model)
     engine.load(QUrl('main.qml'))
     sys.exit(app.exec_())

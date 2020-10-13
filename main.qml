@@ -1,8 +1,8 @@
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.2
 import QtQuick.Controls.Imagine 2.12
-import QtQuick.Controls 2.15
+import QtQuick.Controls 2.2
 
 Window {
     visibility: Qt.WindowFullScreen
@@ -13,44 +13,36 @@ Window {
         columns: 4
         rows: 3
 
-        Rectangle{
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            ColumnLayout{
-                Text {
-                    id: temp1
-                    text: "Датчик 1 - 10"
-                    color: "green"
-                }
-                Text{
-                    id: temp2
-                    text: foo.total
-                    color: "blue"
-                }
-                Text{
-                    id: temp3
-                    text: "Датчик 3 - 20"
-                }
-                Text{
-                    id: temp4
-                    text: "Датчик 4 - 20"
-                }
-            }
+        SensorArea{
+            text: "Температура 1"
+            value: mmodel.temp1
+            lowtolerance: "56"
+            hightolerance: "90"
         }
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            color: "red"
-            Button{
-                id: changeValue
-                text: "Установить значение"
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                onClicked: {
-                    foo.total = "start"
-                    foo.voltage = 0.5
-                }
-            }
+        SensorArea{
+            text: "Температура 2"
+            value: mmodel.temp2
+            lowtolerance: "3"
+            hightolerance: "838"
+        }
+
+        SensorArea{
+            text: "Температура 3"
+            value: mmodel.temp3
+            lowtolerance: "12"
+            hightolerance: "99"
+        }
+        SensorArea{
+            text: "Температура 4"
+            value: mmodel.temp4
+            lowtolerance: "33"
+            hightolerance: "88"
+        }
+        SensorArea{
+            text: "Напряжение"
+            value: mmodel.voltage
+            lowtolerance: "0"
+            hightolerance: "220"
         }
         Rectangle {
             Layout.fillHeight: true
@@ -95,6 +87,7 @@ Window {
             }
 
         }
+
         Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
@@ -109,31 +102,27 @@ Window {
             Layout.fillHeight: true
             Layout.fillWidth: true
             color: "red"
+            Button{
+                id: changeValue
+                text: "Установить значение"
+                anchors.horizontalCenter: parent.horizontalCenter
+                anchors.verticalCenter: parent.verticalCenter
+                onClicked: {
+                    foo.total = "start"
+                    foo.voltage = 0.5
+                }
+            }
+        }
+
+        Rectangle {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
         }
         Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
             color: "red"
-        }
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            color: "red"
-        }
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            color: "red"
-        }
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            color: "red"
-        }
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            color: "blue"
         }
 
     }

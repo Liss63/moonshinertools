@@ -17,6 +17,7 @@ class MoonshinerModel(QObject):
     temp4_changed = pyqtSignal(float)
     voltage_changed = pyqtSignal(int)
 
+    # датчики температуры
     @pyqtProperty(float, notify=temp1_changed)
     def temp1(self):
         return self._temp1
@@ -61,6 +62,7 @@ class MoonshinerModel(QObject):
         self._temp4 = value
         self.temp4_changed.emit(value)
 
+    # текущее напряжение
     @pyqtProperty(int, notify=voltage_changed)
     def voltage(self):
         return self._voltage
