@@ -1,9 +1,6 @@
 import sys
-# Класс QUrl предоставляет удобный интерфейс для работы с Urls
 from PyQt5.QtCore import QUrl
 from PyQt5.QtWidgets import QApplication, QWidget
-# Класс QQuickView предоставляет возможность отображать QML файлы.
-from PyQt5.QtQuick import QQuickView
 from PyQt5.QtQml import QQmlApplicationEngine
 from PyQt5.QtCore import pyqtSignal, QObject, pyqtProperty
 from MoonshinerCore import MoonshinerModel
@@ -28,7 +25,6 @@ class Foo(QObject):
     def total(self, value):
         if self._total == value:
             return
-        print(value)
         self._total = value
         self.total_changed.emit(value)
 
@@ -40,7 +36,6 @@ class Foo(QObject):
     def voltage(self, value):
         if self._voltage == value:
             return
-        print(value)
         self._voltage = value
         self.voltage_changed.emit(value)
 

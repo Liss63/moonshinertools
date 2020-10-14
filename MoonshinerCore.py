@@ -9,7 +9,7 @@ class MoonshinerModel(QObject):
         self._temp2 = 0
         self._temp3 = 0
         self._temp4 = 0
-        self._voltage = 0
+        self._voltage = 112
 
     temp1_changed = pyqtSignal(float)
     temp2_changed = pyqtSignal(float)

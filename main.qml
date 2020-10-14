@@ -1,7 +1,6 @@
 import QtQuick 2.7
 import QtQuick.Window 2.2
 import QtQuick.Layouts 1.2
-import QtQuick.Controls.Imagine 2.12
 import QtQuick.Controls 2.2
 
 Window {
@@ -44,6 +43,20 @@ Window {
             lowtolerance: "0"
             hightolerance: "220"
         }
+        VoltageSetArea {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            text: "Установить напряжение"
+            value: mmodel.voltage / 220
+            onValuechanged:{
+                mmodel.voltage = Math.round(value * 220)
+            }
+        }
+        Rectangle {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+
+        }
         Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
@@ -59,39 +72,11 @@ Window {
                     property: "total"
                     value: myInput.text
                 }
-                //onTextChanged:{
-                //    foo.total = text
-                //}
             }
         }
         Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Text {
-                id: slTV
-                text: Math.round(foo.voltage * 220)
-            }
-            Slider {
-                id: sl
-                value: foo.voltage
-                Layout.fillWidth: true
-                //anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left: parent.left
-                anchors.right: parent.right
-                Binding {
-                    target: foo
-                    property: "voltage"
-                    value: sl.value
-                }
-            }
-
-        }
-
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
-            color: "red"
         }
         Rectangle {
             Layout.fillHeight: true
@@ -114,11 +99,7 @@ Window {
             }
         }
 
-        Rectangle {
-            Layout.fillHeight: true
-            Layout.fillWidth: true
 
-        }
         Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
