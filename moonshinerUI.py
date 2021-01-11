@@ -40,10 +40,7 @@ class Foo(QObject):
         self.voltage_changed.emit(value)
 
 
-
-
 if __name__ == '__main__':
-    sys.argv += ['--style', 'Fusion']
     app = QApplication(sys.argv)
     foo = Foo()
     engine = QQmlApplicationEngine()
