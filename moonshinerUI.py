@@ -5,7 +5,7 @@ from PyQt5.QtQml import QQmlApplicationEngine
 from PyQt5.QtCore import pyqtSignal, QObject, pyqtProperty
 from MoonshinerCore import MoonshinerModel
 
-
+# все нахуй снести и переделать UI
 class Foo(QObject):
 
     def __init__(self):
