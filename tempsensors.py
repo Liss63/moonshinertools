@@ -2,6 +2,7 @@ import os
 import threading
 import glob
 import time
+import sys
 
 class NoOneWireError(Exception):
     pass
@@ -75,7 +76,7 @@ def measure():
 def main():
     t = 0
     tmax = 0
-    for i in xrange(1, sys.maxsize):
+    for i in range(1, sys.maxsize):
         time_begin = time.time()
         (DS18B20list, tMeasure) = measure()
         os.system('clear')
