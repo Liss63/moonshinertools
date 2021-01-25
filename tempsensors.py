@@ -4,6 +4,7 @@ import glob
 import time
 import sys
 
+
 class NoOneWireError(Exception):
     pass
 
