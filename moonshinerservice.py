@@ -7,6 +7,15 @@ import platform
 
 if platform.machine() == 'armv6l':
     import tempsensors
+else:
+    import fake_rpi
+    import sys
+    sys.modules['RPi'] = fake_rpi.RPi  # Fake RPi
+    sys.modules['RPi.GPIO'] = fake_rpi.RPi.GPIO  # Fake GPIO
+
+import RPi.GPIO as GPIO
+
+#button board mode pin 11,13,15
 
 class RepeatTimer(Timer):
     def run(self):
@@ -35,8 +44,24 @@ def temp_sensors_process(sensors_dict):
     return
 
 
+def button_callback(channel):
+    print('This is a edge event callback function!')
+    print('Edge detected on channel %s'%channel)
+    print('This is run in a different thread to your main program')
+
+
+def button_config():
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(11, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(13, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.add_event_detect(11, GPIO.RISING, callback=button_callback)
+    GPIO.add_event_detect(13, GPIO.RISING, callback=button_callback)
+    GPIO.add_event_detect(15, GPIO.RISING, callback=button_callback)
+
 if __name__ == '__main__':
     print("start")
+    button_config()
     manager = multiprocessing.Manager()
     d = manager.dict()
     p = multiprocessing.Process(target=temp_sensors_process, args=(d, ))
